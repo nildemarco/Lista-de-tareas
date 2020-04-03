@@ -10,6 +10,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import TextField from '@material-ui/core/TextField'
+import ClearIcon from '@material-ui/icons/Clear';
 
 
 const useStyles = makeStyles({
@@ -33,6 +35,21 @@ const useStyles = makeStyles({
     marginRight: '5px',
     marginBottom: "-5px",
   },
+  iconBar3: {
+    fontSize: '20px',
+    color: "red",
+    marginRight: '5px',
+    marginBottom: "-5px",
+  },
+  form: {
+    marginTop: '60px',
+    marginBottom: '20px',
+    marginLeft: '20px'
+  },
+  inputText: {
+    width: 210,
+    padding: '5px',
+  },
   containerCard: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -40,7 +57,6 @@ const useStyles = makeStyles({
   card: {
     width: 210,
     fontSize: 15,
-    marginTop: '60px',
     marginLeft: '20px',
   },
   title: {
@@ -60,6 +76,13 @@ const useStyles = makeStyles({
     textAlign: 'left',
     fontSize: 10,
   },
+  buttonDelete: {
+    width: 30,
+    height: 50,
+    backgroundColor: 'red',
+    opacity: '0.7',
+    color:'white',
+  },
 })
 
 
@@ -72,17 +95,48 @@ const App = () => {
    'Hacer ejercicios',
    'Cocinar', 
    'Mirar por el balcon'])
-   const [completed, setCompleted] = useState(0)
+   const [completed, setCompleted] = useState(0);
+
+   const [tareaDelete, setDelete] = useState(0)
+
+   const [nuevaTarea, setNuevaTarea] = useState('')
   
-   const handleClick = indice => {
-     setTareas(tareas.filter((tarea, i) => i !== indice )) 
+   const handleClick = (accion,indice) => {
+     setTareas(tareas.filter((tarea, i) => i !== indice ))
+     if(accion === 'complete'){ 
      setCompleted(completed + 1)
+     } else {
+      setDelete(tareaDelete + 1)
+     }
    }
+
+  const handleChange = e => {
+   setNuevaTarea(e.target.value)
+  } 
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    const tareasExtras = [...tareas, nuevaTarea]
+    setTareas(tareasExtras)
+    setNuevaTarea('')
+  }
   return (
     <>
       <AppBar className={classes.bar}> <p>Tareas pendientes: {tareas.length} <NotificationsNoneIcon className={classes.iconBar1} />
-     Tareas completadas: {completed} <CheckCircleIcon className={classes.iconBar2} /></p>
+     Tareas completadas: {completed} <CheckCircleIcon className={classes.iconBar2}/>
+  Tareas Eliminadas: {tareaDelete} <ClearIcon className={classes.iconBar3}/></p>
       </AppBar>
+      <form  className={classes.form} onSubmit={handleSubmit}>
+       <TextField 
+       label="Escribe aqui tu nueva tarea" 
+       className= {classes.inputText} 
+       variant="filled" 
+       type="text" 
+       name="text" 
+       onChange={handleChange}
+       value={nuevaTarea}
+       />
+     </form>
       <div className={classes.containerCard}>
       {
         tareas.map((tarea, i) =>
@@ -96,8 +150,9 @@ const App = () => {
             </CardContent>
             <CardActions>
               <Button className={classes.button}>
-                <Checkbox className={classes.check} onClick={()=>handleClick(i)} /> Completada
+                <Checkbox className={classes.check} onClick={()=>handleClick("complete",i)}/> Completada
                </Button>
+               <Button className={classes.buttonDelete} onClick={()=>handleClick("delete",i)}><ClearIcon/></Button>
             </CardActions>
           </Card>
         )
