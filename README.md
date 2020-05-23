@@ -1,5 +1,5 @@
 # Lista de tareas: 
-mark
+
 En esta app podes agregar tareas a tu lista, marcarlas como completas o eliminarlas directamente. 
 
 Espero que te diviertas usandola! :)
