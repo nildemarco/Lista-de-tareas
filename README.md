@@ -23,7 +23,7 @@ Para descargarlo:
   1. 'npm install' 
   2. 'npm start' 
 
---
+---
 
 # To do list: 
 
