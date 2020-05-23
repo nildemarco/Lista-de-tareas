@@ -8,11 +8,7 @@ Espero que te diviertas usandola! :)
 
 https://tarjeta-tareas.now.sh/
 
-Para desarrollarlo utilice las siguientes tecnologias: 
-HTML
-Javascript 
-React 
-Libreria de Material UI. 
+Para desarrollarlo utilice las siguientes tecnologias: HTML, Javascript, React y Libreria de Material UI. 
 
 Para descargarlo: 
 
@@ -35,11 +31,7 @@ Enjoy it!
 
 https://tarjeta-tareas.now.sh/
 
-For development, I used following technologies: 
-HTML
-JavaScript 
-React
-Library Material UI. 
+For development, I used following technologies: HTML, JavaScript, React yLibrary Material UI. 
 
 If you want to download it: 
 
